@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inouchi Ikuo — Business Designer</title>
+  <meta name="description" content="Business Designer & Design Consultant. ビジネスの課題をデザインの力で解きほぐします。">
+  <meta property="og:title" content="Inouchi Ikuo — Business Designer">
+  <meta property="og:description" content="Business Designer & Design Consultant. 戦略立案からサービス設計、組織変革の伴走まで。">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="logo">Inouchi Ikuo</div>
+    <div class="nav-right">
+      <ul class="nav-links" style="list-style:none;display:flex;gap:28px;">
+        <li><a class="nav-link" href="#work">Work</a></li>
+        <li><a class="nav-link" href="#about-skills">About</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="available-badge">
+        <span class="available-dot"></span>
+        Available
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+  <!-- ─── Hero ─── -->
+  <section id="hero">
+    <div class="hero-body">
+      <p class="hero-eyebrow">Business Designer &amp; Design Consultant</p>
+      <h1 class="hero-name">
+        <em>Design</em><br>
+        as a tool<br>
+        for change.
+      </h1>
+      <p class="hero-desc">
+        ビジネスの課題をデザインの力で解きほぐします。<br>
+        戦略立案からサービス設計、組織変革の伴走まで。
+      </p>
+      <div class="hero-meta">
+        <span class="hero-location">Tokyo · Open to Remote</span>
+      </div>
+    </div>
+    <div class="hero-memo-col">
+      <textarea class="hero-memo" placeholder=""></textarea>
+    </div>
+
+    <div class="postit-wrap" id="postit-1" style="top: 180px; right: 160px;">
+      <div class="postit">
+        <strong>News</strong>
+        26年度から多摩美術大学にて<br>UI/UXについての<br>非常勤講師を開始
+      </div>
+    </div>
+
+    <div class="postit-wrap" id="postit-2" style="top: 331px; right: 80px;">
+      <div class="postit postit-2" style="font-variant-numeric: tabular-nums;">
+        <strong>Today</strong>
+        <div id="postit-date" style="margin-top:4px; font-size:.95em; letter-spacing:.03em;"></div>
+      </div>
+    </div>
+
+    <button id="postit-toggle">Post-it ✕</button>
+  </section>
+
+
+  <!-- ─── Work ─── -->
+  <section id="work" class="section-wrap">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Selected Work</span>
+    </div>
+    <p class="work-statement"><em>デザイナーとして現場から、</em>事業と文化をつくってきた。</p>
+    <p class="work-statement-desc">デザイナーとして商品企画・事業企画に携わって感じたのは、デザインでは最初に考えるべき「ユーザー」がほとんど不在で、スペックと予算と工数の話しか登場しないということ。<br>その違和感を出発点に、新規事業を検討する部署へ異動し、「なぜそうなっているのか」を中から探り、ユーザー中心の検討プロセスに変えていくことを自らのミッションとした。<br>答えを渡すのではなく、正しい問いを一緒に立てることから始める。</p>
+
+    <table class="projects-table">
+      <tbody>
+
+        <tr data-href="advisory.html" tabindex="0" role="link">
+          <td class="td-num">01</td>
+          <td class="td-main">
+            <span class="td-name">新規事業・DX検討を Advisory としてリード</span>
+            <span class="td-desc">クライアント経営層と並走し、事業の「問い」の設定からビジネスモデル検証・プロトタイピングまでを包括的に支援。</span>
+          </td>
+          <td class="td-tags"><div class="td-tags-inner">
+            <span>Advisory</span>
+            <span>Innovation</span>
+          </div></td>
+          <td class="td-year">2022–Now</td>
+          <td class="td-arrow">↗</td>
+        </tr>
+
+        <tr data-href="saas.html" tabindex="0" role="link">
+          <td class="td-num">02</td>
+          <td class="td-main">
+            <span class="td-name">SaaS, Sports DX, AI への取り組み</span>
+            <span class="td-desc">海外先進事例を日本向けにローカライズした支援メニューを独自構築。新規契約3件獲得、継続率100%、顧客満足度9.25/10。</span>
+          </td>
+          <td class="td-tags"><div class="td-tags-inner">
+            <span>DX Strategy</span>
+            <span>AI</span>
+          </div></td>
+          <td class="td-year">2022–Now</td>
+          <td class="td-arrow">↗</td>
+        </tr>
+
+        <tr data-href="alpine.html" tabindex="0" role="link">
+          <td class="td-num">03</td>
+          <td class="td-main">
+            <span class="td-name">iPod連携 車載UXデザイン開発</span>
+            <span class="td-desc">当時最先端の機能を車載機のUXに落とし込むデザイン開発をリード。グローバルパートナーとの協業でプロダクトを実現。</span>
+          </td>
+          <td class="td-tags"><div class="td-tags-inner">
+            <span>UI/UX</span>
+            <span>Product Design</span>
+          </div></td>
+          <td class="td-year">2006–2008</td>
+          <td class="td-arrow">↗</td>
+        </tr>
+
+        <tr data-href="enterprise.html" tabindex="0" role="link">
+          <td class="td-num">04</td>
+          <td class="td-main">
+            <span class="td-name">エンタープライズUX設計</span>
+            <span class="td-desc">現場調査から要件定義・画面設計・マニュアル制作まで。4名のデザイナーをディレクションし、複数の業務プロダクトを設計・開発した。</span>
+          </td>
+          <td class="td-tags"><div class="td-tags-inner">
+            <span>Enterprise UX</span>
+            <span>Direction</span>
+          </div></td>
+          <td class="td-year">2010–2019</td>
+          <td class="td-arrow">↗</td>
+        </tr>
+
+        <tr data-href="poc.html" tabindex="0" role="link">
+          <td class="td-num">05</td>
+          <td class="td-main">
+            <span class="td-name">生産現場の課題解決 PoC → 外販展開</span>
+            <span class="td-desc">製造現場へのエスノグラフィー調査から課題を特定。社内PoCで検証後、外販ビジネスへと拡大するモデルを構築。</span>
+          </td>
+          <td class="td-tags"><div class="td-tags-inner">
+            <span>PoC Design</span>
+            <span>Research</span>
+          </div></td>
+          <td class="td-year">2014–2019</td>
+          <td class="td-arrow">↗</td>
+        </tr>
+
+        <tr data-href="tribus.html" tabindex="0" role="link">
+          <td class="td-num">06</td>
+          <td class="td-main">
+            <span class="td-name">社内起業プログラムの設計・運営</span>
+            <span class="td-desc">社長直轄プロジェクトとして制度設計から伴走支援まで主導。年間100件超の応募から事業化を実現。うち1件は数億円規模へ成長。</span>
+          </td>
+          <td class="td-tags"><div class="td-tags-inner">
+            <span>Innovation</span>
+            <span>Org Design</span>
+          </div></td>
+          <td class="td-year">2019–2022</td>
+          <td class="td-arrow">↗</td>
+        </tr>
+
+        <tr data-href="tsukuroom.html" tabindex="0" role="link">
+          <td class="td-num">07</td>
+          <td class="td-main">
+            <span class="td-name">企業内FABスペース構築と、挑戦する文化づくり</span>
+            <span class="td-desc">社内にFABスペースを立ち上げ、プロトタイピング文化と「つくる」マインドセットを組織に根付かせる取り組みを推進。NHK 魔改造の夜への出場チームも率いた。</span>
+          </td>
+          <td class="td-tags"><div class="td-tags-inner">
+            <span>FAB</span>
+            <span>Culture Design</span>
+          </div></td>
+          <td class="td-year">2017</td>
+          <td class="td-arrow">↗</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ─── About + Skills ─── -->
+  <div id="about-skills" style="border-top: 1px solid var(--border);">
+
+    <div class="col">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">About</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:24px; margin-bottom:36px;">
+        <img src="images/jiko/00001.jpg" alt="Inouchi Ikuo" loading="lazy"
+          style="width:124px; height:124px; border-radius:50%; object-fit:cover; object-position:center top; border:1px solid rgba(24,20,12,.12); flex-shrink:0;">
+        <div>
+          <div style="font-family:Georgia,serif; font-style:italic; font-size:1.4rem; line-height:1.2; margin-bottom:6px;">Inouchi Ikuo</div>
+          <div style="font-size:.78rem; color:#8A8378; line-height:1.6;">
+            Business Designer &amp; Design Consultant<br>
+            多摩美術大学 統合デザイン科 非常勤講師
+          </div>
+        </div>
+      </div>
+
+      <p class="about-text reveal">
+        デザイナーとして20年以上、プロダクトから事業・組織まで一貫して現場に携わってきた。現在はAWSでDXアドバイザリーに従事しながら、多摩美術大学でUI/UXを教える。
+      </p>
+      <p class="about-text reveal reveal-delay-1">
+        「答え」を持ち込むよりも、「本当に解くべき問い」を一緒に立てることに価値がある。デザインと経営の言語を使い分けながら、現場と経営層を同じ方向に動かす。
+      </p>
+      <dl class="detail-list reveal reveal-delay-2">
+        <dt>Focus</dt>
+        <dd>新規事業創出 · DX支援 · UI/UXデザイン</dd>
+        <dt>Certification</dt>
+        <dd>AWS Certified AI Practitioner</dd>
+        <dt>Language</dt>
+        <dd>Japanese · English</dd>
+      </dl>
+    </div>
+
+    <div class="col">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Career</span>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-year">1997</div>
+          <div class="tl-body">
+            <div class="tl-role">プロダクトデザイナー</div>
+            <div class="tl-place">デザイン会社</div>
+            <div class="tl-desc">精密機器から玩具、カタログ、Webのデザインまで</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1999</div>
+          <div class="tl-body">
+            <div class="tl-role">UIデザイナー → デザイン部課長</div>
+            <div class="tl-place">車載機器メーカー</div>
+            <div class="tl-desc">ユーザーにどう使ってほしいか、どう使われるかに向き合う</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2008</div>
+          <div class="tl-body">
+            <div class="tl-role">UI/UXデザイン → 新規事業開発 → 社内起業プログラムリード</div>
+            <div class="tl-place">精密機器メーカー</div>
+            <div class="tl-desc">現場での課題発見から事業化までをUXの立場で実践し、社内に展開</div>
+          </div>
+        </div>
+        <div class="tl-item tl-current">
+          <div class="tl-year">2022<br>Now</div>
+          <div class="tl-body">
+            <div class="tl-role">DX Advisory / Design Architect</div>
+            <div class="tl-place">Amazon Web Services (AWS)</div>
+            <div class="tl-desc">コンサルタントの立場から企業のDX、事業企画、文化醸成に参画</div>
+            <div class="tl-role" style="margin-top:10px;">非常勤講師</div>
+            <div class="tl-place">多摩美術大学 統合デザイン科</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── Contact ─── -->
+  <section id="contact">
+    <div class="contact-inner reveal">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">Contact</span>
+      </div>
+      <h2 class="contact-heading">
+        <em>デザインがビジネスに</em><br>魂を入れる。
+      </h2>
+      <p class="contact-sub">一緒に、考えましょう。</p>
+      <a class="contact-email" href="mailto:number0190@gmail.com">
+        number0190@gmail.com
+        <span>→</span>
+      </a>
+      <div class="contact-links-row">
+        <a class="contact-chip" href="https://www.linkedin.com/in/ikuo-inouchi-0a169934" target="_blank">LinkedIn ↗</a>
+        <a class="contact-chip" href="https://www.amazon.co.jp/dp/B01AXRCDTU" target="_blank">寄稿：メイカーズのエコシステム ↗</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ─── Footer ─── -->
+  <footer>
+    <span>© 2026 Inouchi Ikuo</span>
+  </footer>
+
+  <!-- ─── JS ─── -->
+  <script src="js/cursor.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="js/postit.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

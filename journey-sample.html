@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カスタマージャーニーマップ — 某住宅関連企業 おうち安心サービス</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Yu Gothic','Hiragino Sans',sans-serif;background:#f5f6f8;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#1B2A4A 0%,#2d4a7a 100%);color:#fff;padding:28px 40px}
+.header h1{font-size:22px;font-weight:700;letter-spacing:1px}
+.header p{font-size:13px;opacity:.8;margin-top:4px}
+.tabs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.tabs button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 16px;border-radius:20px;cursor:pointer;font-size:12px;transition:.2s}
+.tabs button:hover,.tabs button.active{background:#fff;color:#1B2A4A;font-weight:700}
+.container{max-width:1600px;margin:0 auto;padding:24px}
+h2.sec{font-size:18px;color:#1B2A4A;margin:28px 0 14px}
+
+/* ペルソナカード */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.pcard{background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,.05);border-top:4px solid #ccc;cursor:pointer;transition:.15s}
+.pcard:hover{box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.pcard.on{border-top-color:#1B2A4A}
+.pcard .icon{font-size:32px}
+.pcard .nm{font-size:14px;font-weight:700;color:#1B2A4A;margin:4px 0}
+.pcard .tg{display:inline-block;background:#e8edf3;color:#1B2A4A;font-size:10px;padding:1px 8px;border-radius:8px;margin:2px 2px 0 0}
+.pcard .desc{font-size:12px;color:#555;margin-top:6px}
+.pcard .qt{background:#f8f9fb;border-left:3px solid #1B2A4A;padding:6px 10px;margin-top:8px;font-size:11px;color:#666;font-style:italic}
+.pcard dl{display:grid;grid-template-columns:auto 1fr;gap:3px 8px;margin-top:8px;font-size:11px}
+.pcard dt{color:#999}.pcard dd{color:#1a1a2e;font-weight:600}
+
+/* 横型ジャーニーテーブル */
+.jtable-wrap{overflow-x:auto;margin-bottom:24px}
+table.jt{border-collapse:separate;border-spacing:0;width:100%;min-width:1200px;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.05);font-size:11px}
+table.jt th,table.jt td{padding:8px 10px;vertical-align:top;border-bottom:1px solid #eee;text-align:left}
+table.jt thead th{background:#1B2A4A;color:#fff;font-size:11px;font-weight:600;position:sticky;top:0;z-index:2;white-space:nowrap}
+table.jt tbody th{position:sticky;left:0;z-index:1;background:#fff;min-width:260px;max-width:260px;box-shadow:2px 0 4px rgba(0,0,0,.06)}
+table.jt thead th:first-child{border-radius:10px 0 0 0;width:260px;position:sticky;left:0;z-index:3}
+table.jt tbody th{background:#fff;font-weight:700;color:#1B2A4A;position:sticky;left:0;z-index:1;white-space:normal;word-break:break-all;font-size:12px;min-width:260px;max-width:260px;box-shadow:2px 0 4px rgba(0,0,0,.06)}
+table.jt td.dim{opacity:.2}
+table.jt .emotion{font-size:12px}
+table.jt .pain{color:#c0392b}
+table.jt .gain{color:#27ae60}
+table.jt .img-placeholder{width:100%;height:160px;background:#f0f3f7;border:2px dashed #ccc;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:10px;margin-top:4px;cursor:pointer;overflow:hidden;position:relative}
+table.jt .img-placeholder img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+table.jt .img-placeholder .drop-hint{position:absolute;pointer-events:none}
+
+/* インサイト */
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.icard{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,.05);border-top:4px solid #ccc}
+.icard .it{font-size:13px;font-weight:700;margin-bottom:6px}
+.icard .ib{font-size:12px;color:#555}
+
+/* セグメント */
+.seg-wrap{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.05);margin-bottom:24px}
+
+/* プロンプト */
+.prompt-section{margin-top:32px;margin-bottom:40px}
+.prompt-card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,.05);margin-bottom:12px;border-left:4px solid #1B2A4A}
+.prompt-card .plabel{font-size:12px;font-weight:700;color:#1B2A4A;margin-bottom:4px}
+.prompt-card pre{font-size:11px;background:#f8f9fb;padding:10px;border-radius:6px;white-space:pre-wrap;word-break:break-all;line-height:1.5;color:#333;cursor:pointer;position:relative}
+.prompt-card pre:hover::after{content:'📋 クリックでコピー';position:absolute;top:4px;right:8px;font-size:10px;color:#1B2A4A;background:#e8edf3;padding:2px 8px;border-radius:4px}
+.copied-toast{position:fixed;bottom:20px;right:20px;background:#27ae60;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;z-index:999;display:none}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏠 おうち安心クラブ — ペルソナ＆カスタマージャーニー</h1>
+  <p>某住宅関連企業住環境サブスクリプション事業の顧客体験設計</p>
+  <div class="tabs" id="tabs">
+    <button class="active" onclick="filter(-1)">全体俯瞰</button>
+    <button onclick="filter(0)">👴 田中夫妻</button>
+    <button onclick="filter(1)">👨‍💼 山田さん</button>
+    <button onclick="filter(2)">👩 佐藤さん</button>
+    <button onclick="filter(3)">👵 中村さん</button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ペルソナカード -->
+<h2 class="sec">ペルソナ</h2>
+<div class="pgrid" id="pgrid"></div>
+
+<!-- 横型ジャーニー -->
+<h2 class="sec">カスタマージャーニーマップ</h2>
+<p style="font-size:12px;color:#888;margin-bottom:12px">横スクロールで全フェーズを確認 ｜ 画像枠にD&amp;Dで画像を配置できます</p>
+<div class="jtable-wrap">
+<table class="jt" id="jtable"></table>
+</div>
+
+<!-- インサイト -->
+<h2 class="sec">💡 ジャーニーから見えるインサイト</h2>
+<div class="igrid">
+<div class="icard" style="border-top-color:#e74c3c"><div class="it" style="color:#e74c3c">🔴 最大のハードル：「無料→有料」の壁</div><div class="ib">田中夫妻・中村さんは「今まで無料だったのになぜお金を払うのか」が最大の抵抗。対策：「保証が切れた後の安心」「何かあった時の相談先」という価値を、工事の売り込みではなく「見守り」として伝える。ライト月1,280円は「保険」の感覚で訴求。</div></div>
+<div class="icard" style="border-top-color:#f39c12"><div class="it" style="color:#f39c12">🟠 プレミアムの鍵：「遠方の家族」</div><div class="ib">山田さんのような「遠方に実家がある50代」は月7,480円でも払う。対策：プレミアムの訴求は本人ではなく「離れて暮らす家族」に向ける。点検レポートを家族にも送る機能が差別化ポイント。</div></div>
+<div class="icard" style="border-top-color:#27ae60"><div class="it" style="color:#27ae60">🟢 アップセルの自然な導線</div><div class="ib">佐藤さんは「家全体を見てほしい」ニーズが明確。太陽光の発電効率チェック→パネル清掃→将来の撤去・リサイクル（案C）への導線が自然に作れる。スタンダードプランに太陽光発電量チェックを含め、住環境＋エネルギーのクロスセルを実現。</div></div>
+<div class="icard" style="border-top-color:#3498db"><div class="it" style="color:#3498db">🔵 休眠顧客の掘り起こしコスト</div><div class="ib">中村さんのような8年間接点ゼロの顧客は、再接触に電話＋DM＋訪問が必要でCACが高い。PoCでは保証満了間近（田中夫妻型）を最優先。休眠顧客はStep 2以降で「地域一斉キャンペーン」として効率的にアプローチ。</div></div>
+<div class="icard" style="border-top-color:#9b59b6"><div class="it" style="color:#9b59b6">🟣 継続率を決めるのは「点検レポートの質」</div><div class="ib">全ペルソナ共通で、継続/離脱の分岐点は「点検後に何が返ってくるか」。写真付きレポート＋わかりやすい説明＋「今は大丈夫」という安心感が継続率88%の鍵。「異常なし」も価値として伝える。</div></div>
+<div class="icard" style="border-top-color:#1B2A4A"><div class="it" style="color:#1B2A4A">📊 顧客母集団の現実</div><div class="ib">累計84万軒のうち直近の顧客と言えるのは約12万軒。PoCの母集団はこの12万軒から選定。保証満了間近（田中夫妻型）＋複数商材購入（佐藤さん型）が最も入会率が高い層。休眠72万軒の掘り起こしは中長期テーマ。</div></div>
+</div>
+
+<!-- セグメント構成図 -->
+<h2 class="sec">📐 顧客セグメント構成</h2>
+<div class="seg-wrap">
+<svg viewBox="0 0 800 220" style="width:100%;max-width:800px;margin:0 auto;display:block">
+  <rect x="20" y="20" width="760" height="50" rx="8" fill="#e8edf3" stroke="#1B2A4A" stroke-width="1"/>
+  <text x="400" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#1B2A4A">累計 84万軒（某住宅関連企業施工実績全体）</text>
+  <rect x="20" y="90" width="136" height="50" rx="8" fill="#1B2A4A"/>
+  <text x="88" y="115" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">直近顧客</text>
+  <text x="88" y="132" text-anchor="middle" font-size="11" fill="#aac">約12万軒</text>
+  <rect x="170" y="90" width="610" height="50" rx="8" fill="#ddd" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+  <text x="475" y="115" text-anchor="middle" font-size="12" fill="#666">休眠顧客 約72万軒（保証切れ・接点なし）</text>
+  <text x="475" y="132" text-anchor="middle" font-size="10" fill="#999">中長期の掘り起こし対象（中村さん型）</text>
+  <rect x="20" y="160" width="90" height="44" rx="6" fill="#27ae60"/>
+  <text x="65" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">PoC対象</text>
+  <text x="65" y="194" text-anchor="middle" font-size="9" fill="#cfc">1,000〜3,000軒</text>
+  <rect x="120" y="160" width="100" height="44" rx="6" fill="#3498db"/>
+  <text x="170" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">保証満了間近</text>
+  <text x="170" y="194" text-anchor="middle" font-size="9" fill="#cdf">田中夫妻型</text>
+  <rect x="230" y="160" width="100" height="44" rx="6" fill="#f39c12"/>
+  <text x="280" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">複数商材購入</text>
+  <text x="280" y="194" text-anchor="middle" font-size="9" fill="#fec">佐藤さん型</text>
+  <rect x="340" y="160" width="100" height="44" rx="6" fill="#9b59b6"/>
+  <text x="390" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">太陽光単独</text>
+  <text x="390" y="194" text-anchor="middle" font-size="9" fill="#dcf">次段階</text>
+  <rect x="450" y="160" width="100" height="44" rx="6" fill="#e74c3c"/>
+  <text x="500" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">遠方家族</text>
+  <text x="500" y="194" text-anchor="middle" font-size="9" fill="#fcc">山田さん型</text>
+  <line x1="88" y1="140" x2="65" y2="158" stroke="#27ae60" stroke-width="2" marker-end="url(#arr)"/>
+  <defs><marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#27ae60"/></marker></defs>
+</svg>
+</div>
+
+<!-- ChatGPTプロンプト一覧 -->
+<div class="prompt-section">
+<h2 class="sec">🎨 ChatGPT画像生成プロンプト一覧</h2>
+<p style="font-size:12px;color:#888;margin-bottom:16px">各プロンプトをクリックでコピー → ChatGPTに貼り付けて画像生成 → 生成画像をジャーニーの画像枠にD&amp;Dで配置</p>
+<div id="prompt-list"></div>
+</div>
+
+</div><!-- container -->
+<div class="copied-toast" id="toast">✅ コピーしました</div>
+
+<script>
+// ===== ペルソナデータ =====
+const PERSONAS = [
+  { icon:'👴', name:'田中 義男・幸子 夫妻', tags:['保証満了間近','ライト候補','最優先'], color:'#3498db',
+    desc:'5年前にシロアリ防除を施工。保証がもうすぐ切れるが、また高額な工事を勧められるのでは？と不安。年金生活で大きな出費は避けたい。',
+    stats:{年齢:'65歳・63歳',築年数:'25年（木造2階建て）',世帯:'夫婦2人暮らし',施工歴:'シロアリ防除（5年前）','某住宅関連企業接点':'保証期間中の無料点検1回',ITリテラシー:'スマホは使うがアプリは苦手'},
+    quote:'「保証が切れたらどうなるの？ また何十万もかかるの？ でも放っておくのも怖い…」' },
+  { icon:'👨‍💼', name:'山田 健一', tags:['遠方実家管理','プレミアム候補','次段階'], color:'#e74c3c',
+    desc:'東京在住の会社員。福岡の実家に80代の母が一人暮らし。3年前に床下換気を施工。母が業者対応できなくなってきた。',
+    stats:{年齢:'52歳（母82歳）',築年数:'35年（実家・木造）',世帯:'母が単身居住',施工歴:'床下換気（3年前）','某住宅関連企業接点':'施工時のみ（母が対応）',ITリテラシー:'高い（オンライン決済OK）'},
+    quote:'「母が一人で業者の話を聞いて判断するのは無理。定期的に見てくれて、何かあったら僕に連絡してくれるサービスがあれば…」' },
+  { icon:'👩', name:'佐藤 美咲', tags:['太陽光＋住環境','スタンダード候補','重点補完'], color:'#f39c12',
+    desc:'共働き夫婦。太陽光パネル＋床下断熱を施工済み。住宅への投資意識が高く、家の資産価値を維持したい。',
+    stats:{年齢:'43歳',築年数:'15年（木造2階建て）',世帯:'夫婦＋子ども2人',施工歴:'太陽光＋床下断熱（4年前）','某住宅関連企業接点':'太陽光の無償点検1回',ITリテラシー:'高い（比較サイトで調べる）'},
+    quote:'「太陽光の発電量が去年より落ちてる気がする。床下も含めて家全体を定期的に見てもらえるなら安心」' },
+  { icon:'👵', name:'中村 ハル', tags:['休眠顧客','掘り起こし対象','ライト候補'], color:'#9b59b6',
+    desc:'8年前にシロアリ防除を施工して以来、某住宅関連企業との接点ゼロ。保証も切れている。家のあちこちに不具合があるが、誰に相談すればいいかわからない。',
+    stats:{年齢:'74歳',築年数:'32年（木造平屋）',世帯:'単身（夫は他界）',施工歴:'シロアリ防除（8年前）','某住宅関連企業接点':'8年間ゼロ',ITリテラシー:'低い（固定電話中心）'},
+    quote:'「床がきしむし、お風呂場の壁にカビが…。でもどこに頼めばいいかわからないし、高いお金を取られそうで怖い」' },
+];
+
+// ===== フェーズ定義 =====
+const PHASES = [
+  { id:'p1', name:'① 潜在ニーズ', sub:'きっかけ前', color:'#e8edf3' },
+  { id:'p2', name:'② 認知・接触', sub:'某住宅関連企業との再会', color:'#dce6f5' },
+  { id:'p3', name:'③ 検討・比較', sub:'入るかどうか', color:'#d0dff0' },
+  { id:'p4', name:'④ 加入決定', sub:'決め手', color:'#c4d8eb' },
+  { id:'p5', name:'⑤ 初回点検', sub:'オンボーディング', color:'#b8d1e6' },
+  { id:'p6', name:'⑥ 継続利用', sub:'6ヶ月後', color:'#adc9e0' },
+  { id:'p7', name:'⑦ 更新判断', sub:'1年後', color:'#a1c2db' },
+];
+
+// ===== 行定義 =====
+const ROWS = [
+  { key:'scene', label:'シーン' },
+  { key:'action', label:'行動' },
+  { key:'emotion', label:'感情', cls:'emotion' },
+  { key:'touchpoint', label:'接点/ペイン/ゲイン' },
+  { key:'image', label:'イメージ', isImage:true },
+];
+
+// ===== ジャーニーデータ（ペルソナ×フェーズ） =====
+const JD = [
+// --- 田中夫妻 ---
+[
+ {scene:'保証満了まであと3ヶ月。「保証期間終了のお知らせ」ハガキが届く。床下の状態が気になるが放置中。',action:'ハガキを見て夫婦で「どうしよう」と話す。ネットで調べるのは苦手。近所の人に聞く。',emotion:'😟 不安（保証が切れたら何かあった時どうなる？）',touchpoint:'📮 保証満了通知ハガキ（DM）'},
+ {scene:'某住宅関連企業から電話。「保証が切れる前に無料点検しませんか？ おうち安心クラブのご案内も」',action:'無料点検なら…と承諾。点検日を予約。',emotion:'😐 警戒（また工事を勧められるのでは）',touchpoint:'📞 アウトバウンド電話＋訪問'},
+ {scene:'点検員が床下を確認。「問題ありません。ただ築25年なので年1回は見た方がいい」。チラシを渡される。',action:'チラシを持ち帰り夫婦で相談。「月1,280円か…年1回見てもらえるなら安心かも」',emotion:'🤔 迷い（お金を払う価値があるか？）',touchpoint:'⚠️ 無料→有料の抵抗感 / 年金で固定費増やしたくない'},
+ {scene:'「保証が切れると通常料金。会員なら会員価格で対応できます」の一言が決め手。',action:'ライト（月1,280円）に加入。',emotion:'😌 安堵（月1,280円なら試せる）',touchpoint:'✅ 相談先がある安心 / 会員価格 / 年1回プロ点検'},
+ {scene:'入会3ヶ月後の初回点検。床下写真付きレポートを手渡し。「経過観察で大丈夫です」と丁寧に説明。',action:'レポートを見て「写真でわかりやすい」と納得。',emotion:'😊 満足（お金を払った価値があった）',touchpoint:'✅ 写真レポートの安心感 / ⚠️ 形式的だと「無駄」と感じるリスク'},
+ {scene:'半年後に某住宅関連企業から「お変わりありませんか？」の電話。',action:'特に自分からは何もしない。電話で近況を伝える。',emotion:'😊 安心（見守ってもらえている）',touchpoint:'📞 フォロー電話 / 換気扇フィルター交換（追加3万円）'},
+ {scene:'1年経過。「この1年で相談できたか」「レポートに納得感があったか」で判断。',action:'継続（ライト→ライト）。月1,280円は気にならなくなる。',emotion:'😌 習慣化',touchpoint:'💰 LTV: 会費1.5万＋追加3万＝約4.5万/年（3年13.5万）'},
+],
+// --- 山田さん ---
+[
+ {scene:'帰省時に実家の床下から湿気の匂い。母は「大丈夫よ」と言うが心配。',action:'スマホで「実家 床下 点検 福岡」と検索。某住宅関連企業の施工履歴を母に確認。',emotion:'😰 焦り（母が一人で対応できない。自分は東京）',touchpoint:'🔍 Google検索 → 某住宅関連企業Webサイト'},
+ {scene:'Webサイトでおうち安心クラブを発見。「実家見守り」の文言に目が止まる。',action:'問い合わせフォームから連絡。「レポートを東京の自分にも送ってもらえますか？」',emotion:'🤔 期待と不安（こういうサービスを探していた。母が嫌がらないか？）',touchpoint:'🌐 Webサイト＋問い合わせフォーム＋電話'},
+ {scene:'母に電話で説明。母は「お金かかるんでしょ？」と渋る。',action:'自分が費用負担すると伝える。他社の空き家管理サービスとも比較。',emotion:'😤 決意（母の安全のためなら月7,480円は安い）',touchpoint:'⚠️ 母が「余計なお世話」と感じないか / 東京から契約できるか'},
+ {scene:'「レポートをメールでお送りします。緊急時はお電話します」が決め手。',action:'プレミアム（月7,480円）に加入。オンライン決済。',emotion:'😊 安心（やっと実家を任せられる先ができた）',touchpoint:'✅ 離れていても状況がわかる / 母が業者対応不要 / 緊急連絡体制'},
+ {scene:'初回点検。点検員が母に丁寧に説明。レポートがメールで山田さんにも届く。',action:'レポートを確認。母に電話「点検員さん優しかったよ」。',emotion:'😊 大満足（期待以上。母も喜んでいる）',touchpoint:'✅ メール送付が決め手 / ✅ 母が点検員を信頼 / ⚠️ レポート遅延は不安増幅'},
+ {scene:'半年後の2回目点検。母から「問題ないって」と電話。レポートもメールで確認。',action:'点検時に換気扇劣化を発見→山田さんに電話で確認→交換承諾（8万円）。',emotion:'😌 信頼（任せて正解だった）',touchpoint:'📞 追加提案は山田さんに確認 / ⚠️ 母の施設入所で解約リスク'},
+ {scene:'「母が安心して暮らせているか」「実家の状態を把握できているか」で判断。',action:'継続（プレミアム→プレミアム）。「もっと早く入ればよかった」。',emotion:'😊 感謝（帰省時の心配が減った）',touchpoint:'💰 LTV: 会費9万＋追加8万＝約17万/年（3年51万・高LTV）'},
+],
+// --- 佐藤さん ---
+[
+ {scene:'太陽光の発電量モニターで「去年より10%落ちてる？」と気づく。パネルの汚れか劣化か不明。',action:'ネットで「太陽光 発電量低下 原因」を検索。某住宅関連企業の施工書類を引っ張り出す。',emotion:'🧐 気になる（投資した設備の状態を把握したい）',touchpoint:'🔍 Google検索 → メーカーサイト → 施工書類'},
+ {scene:'某住宅関連企業から太陽光の無償点検案内メール。「おうち安心クラブなら太陽光＋床下を一括チェック」',action:'メールからWebサイトで詳細確認。スタンダードプランの内容を読み込む。夫と相談。',emotion:'🤔 興味（家全体を見てもらえるなら効率的）',touchpoint:'📧 メール＋Webサイト'},
+ {scene:'他社の住宅点検サービスと比較。「某住宅関連企業は施工した会社だから家の履歴を知っている」と気づく。',action:'比較表を作って夫にプレゼン。「月3,480円で年2回。太陽光も床下も。他社だと別々」',emotion:'😊 納得（コスパが良い。施工会社の安心感）',touchpoint:'⚠️ 太陽光の専門知識があるか？ / 夫が「そこまで必要？」と渋る'},
+ {scene:'「施工履歴があるので前回と比較して変化をお伝えできます」が決め手。データに基づく点検に納得。',action:'スタンダード（月3,480円）に加入。',emotion:'😊 期待（家の資産価値を維持できる）',touchpoint:'✅ 太陽光＋床下一括管理 / 施工履歴比較 / 資産価値維持'},
+ {scene:'初回点検。パネル汚れ確認＋発電量データ＋床下湿度・断熱材チェック。写真付き詳細レポート。',action:'「パネル汚れで5%低下。清掃で回復できます」→清掃依頼（5万円）。',emotion:'😊 満足（データで説明してもらえるのが良い）',touchpoint:'✅ 原因特定→清掃で回復 / ✅ 床下問題なし / ⚠️ レポートが専門的すぎると読めない'},
+ {scene:'半年後の2回目点検。前回との比較データ付きレポート。清掃後の発電量回復を確認。',action:'「蓄電池で夜間も自家消費できます」→見積依頼（150万円の商談化）。',emotion:'😊 信頼（データで語ってくれるので信頼できる）',touchpoint:'📊 比較データ / ⚠️ マンネリ化すると「もういいかな」'},
+ {scene:'「レポートの質」「前回比較データ」「新しい提案があるか」で判断。',action:'継続（スタンダード→スタンダード）。蓄電池商談が進めばLTV大幅増。',emotion:'😊 満足（家のかかりつけ医ができた感覚）',touchpoint:'💰 LTV: 会費4.2万＋清掃5万＝約9万/年（蓄電池込み160万）'},
+],
+// --- 中村さん ---
+[
+ {scene:'床がきしむ。お風呂場の壁にカビ。8年前のシロアリ防除以来某住宅関連企業とは連絡なし。保証も切れている。',action:'何もしない。「まだ大丈夫だろう」と放置。近所の人に相談するが「うちもそうよ」で終わる。',emotion:'😟 漠然とした不安（誰に相談すればいいかわからない）',touchpoint:'❌ 接点ゼロ状態'},
+ {scene:'某住宅関連企業から「地域一斉無料点検キャンペーン」のDM。「以前ご利用いただいたお客様限定」。',action:'「そういえば某住宅関連企業さんにやってもらったな」と思い出す。電話番号を見つけて電話。',emotion:'😐 半信半疑（無料って本当？ 何か売りつけられない？）',touchpoint:'📮 DM（郵送）→ ☎️ 電話'},
+ {scene:'無料点検。「シロアリ再発なし。ただ湿気が多い。換気改善をお勧めします」。おうち安心クラブの案内も。',action:'「月1,280円か…年金だけだし…」と悩む。息子に電話して相談。',emotion:'😟 迷い（お金の不安 vs 家の不安）',touchpoint:'⚠️ 年金で月1,280円でも慎重 / 一人で判断する不安 / 8年放置の後ろめたさ'},
+ {scene:'息子の「何かあった時に電話できる先があるなら安心だよ」が決め手。点検員の「無理に工事は勧めません」も。',action:'ライト（月1,280円）に加入。',emotion:'😌 ほっとした（相談先ができた）',touchpoint:'✅ 一人暮らしの不安軽減 / 電話先がある / 息子も安心'},
+ {scene:'初回点検。丁寧に説明。写真レポートを手渡し。「お風呂のカビは換気で改善できます」',action:'「優しい人が来てくれた」「写真でわかりやすかった」',emotion:'😊 安心（来てもらえてよかった）',touchpoint:'✅ 人が来ること自体が安心 / ✅ 高額工事を勧められなかった / ⚠️ 字が小さいと読めない'},
+ {scene:'半年後、某住宅関連企業から「お変わりありませんか？」の電話。「実は台所の水漏れが…」と相談。',action:'水漏れ修理を手配（会員価格2万円）。「こういう時に電話できるのがありがたい」',emotion:'😊 感謝（入っていてよかった）',touchpoint:'📞 フォロー電話 / ⚠️ 健康問題・施設入所で解約リスク'},
+ {scene:'「困った時に電話できたか」「点検の人が来てくれたか」で判断。内容より「人が来る」こと自体が価値。',action:'継続（ライト→ライト）。息子が費用負担に切替→山田さん型に移行の可能性。',emotion:'😌 習慣化（某住宅関連企業さんが見てくれている安心感）',touchpoint:'💰 LTV: 会費1.5万＋修理2万＝約3.5万/年（息子プレミアム移行で大幅増）'},
+],
+];
+
+// ===== ChatGPT画像生成プロンプト =====
+const STYLE = 'Black and white manga line art in 1970s-1980s Showa-era Japanese manga style. Pen and ink drawing with screentone shading, expressive faces, speed lines for emotion. No color, no grey wash — pure black ink on white paper. No text, no speech bubbles, no letters in the image. Simple composition. Aspect ratio 16:9.';
+
+const PROMPTS = [];
+PERSONAS.forEach((p, pi) => {
+  PHASES.forEach((ph, phi) => {
+    const d = JD[pi][phi];
+    let scene = '';
+    if (pi===0) { // 田中夫妻
+      const scenes = [
+        'An elderly Japanese couple (mid-60s) sitting at their kitchen table, looking worried at a postcard/letter. Traditional Japanese wooden house interior. The wife holds the letter while the husband scratches his head.',
+        'An elderly Japanese couple opening their front door to a friendly male inspector in a uniform with a clipboard. The couple looks slightly cautious but polite. Japanese residential entrance (genkan).',
+        'An elderly Japanese couple sitting on their sofa, the wife holding a flyer/brochure, the husband with arms crossed thinking. A small calculator on the table. Warm living room.',
+        'An elderly Japanese couple smiling with relief, shaking hands with a friendly inspector at their doorstep. A small membership card visible. Bright, hopeful atmosphere.',
+        'A friendly inspector showing a tablet/report with house photos to an elderly couple in their living room. The couple looks at the screen with interest and relief. Professional but warm interaction.',
+        'An elderly Japanese couple at home, the wife watering plants, the husband reading newspaper. A phone on the table showing a missed call from "某住宅関連企業". Peaceful daily life.',
+        'An elderly Japanese couple looking content at their kitchen table, a membership renewal notice on the table. Calendar on the wall showing one year has passed. Calm, settled atmosphere.',
+      ];
+      scene = scenes[phi];
+    } else if (pi===1) { // 山田さん
+      const scenes = [
+        'A Japanese businessman (early 50s) in casual clothes visiting his elderly mother\'s old wooden house in the countryside. He\'s crouching near the floor, sniffing, looking concerned. His elderly mother (80s) stands behind him waving her hand dismissively.',
+        'A Japanese businessman sitting at his desk in a Tokyo apartment at night, looking at his laptop screen showing a home inspection service website. Phone in his other hand. Focused expression.',
+        'A Japanese businessman on the phone, gesturing while explaining something. Split scene: on the other side, his elderly mother sitting in her traditional Japanese room looking skeptical, holding a cordless phone.',
+        'A Japanese businessman smiling at his laptop, completing an online form. A confirmation screen visible. Relief and satisfaction on his face. Modern apartment setting.',
+        'A friendly inspector showing a tablet to an elderly Japanese woman (80s) in her traditional home. She\'s smiling. Inset/thought bubble: her son in Tokyo checking his email with the same report, looking relieved.',
+        'An elderly Japanese woman opening her door to a familiar inspector, greeting him warmly like an old friend. She\'s holding a cup of tea to offer. Comfortable, trusting relationship.',
+        'A Japanese businessman video-calling his smiling elderly mother on his phone. A home inspection report email notification visible on his laptop in the background. Warm family connection across distance.',
+      ];
+      scene = scenes[phi];
+    } else if (pi===2) { // 佐藤さん
+      const scenes = [
+        'A Japanese woman (early 40s) standing in her garden looking up at solar panels on her roof with a puzzled expression. She\'s holding a tablet showing a declining graph. Modern suburban Japanese house.',
+        'A Japanese woman sitting at a dining table with her husband, both looking at a laptop screen showing an email about home inspection. Kids\' toys visible in the background. Evening family scene.',
+        'A Japanese woman showing her husband a comparison chart on a tablet, pointing at it enthusiastically. The husband looks thoughtful but interested. Kitchen table with coffee cups.',
+        'A Japanese couple (40s) smiling, the wife filling out a form on her laptop while the husband gives a thumbs up. Modern, bright living room with solar panel brochures on the table.',
+        'An inspector on the roof checking solar panels with testing equipment, while another inspector checks under the floor with a flashlight. The homeowner (woman, 40s) watches from the garden, impressed.',
+        'A Japanese woman looking at a detailed report with charts and graphs on her tablet, smiling. A before/after comparison of solar panel output visible. Clean, data-driven aesthetic.',
+        'A Japanese couple (40s) in their living room, looking satisfied. The wife holds a report, the husband looks at a battery storage unit brochure. Their house visible through the window with clean solar panels.',
+      ];
+      scene = scenes[phi];
+    } else { // 中村さん
+      const scenes = [
+        'An elderly Japanese woman (mid-70s) living alone in an old wooden house, looking down at a creaky floor with concern. Mold visible on the bathroom wall in the background. Lonely, worried atmosphere.',
+        'An elderly Japanese woman sitting at her low table (chabudai), holding a postcard/DM, squinting to read it. A landline phone nearby. She looks curious but hesitant.',
+        'An elderly Japanese woman on a landline phone, talking to her son. She looks uncertain, holding a flyer in her other hand. A small purse/wallet visible on the table suggesting money concerns.',
+        'An elderly Japanese woman at her front door, bowing slightly to a kind-looking inspector. She looks relieved, almost tearful. A simple, humble Japanese home entrance.',
+        'A friendly inspector kneeling to show photos on a clipboard to an elderly Japanese woman sitting in her tatami room. She\'s leaning forward with interest, wearing reading glasses. Warm, patient interaction.',
+        'An elderly Japanese woman on the phone, looking relieved while explaining something (pointing at her kitchen sink). Water drops visible under the sink. She\'s glad to have someone to call.',
+        'An elderly Japanese woman sitting peacefully in her clean, well-maintained home, a small "おうち安心クラブ" membership card on her shelf. Sunlight coming through the window. Sense of security and care.',
+      ];
+      scene = scenes[phi];
+    }
+    PROMPTS.push({ pi, phi, persona:p.name, phase:ph.name, prompt: scene + ' ' + STYLE });
+  });
+});
+
+// ===== 状態 =====
+let activePIdx = 0; // 0 = 田中夫妻（デフォルト）
+const images = {}; // key: 'pi_phi' → dataURL
+images['0_0'] = 'images/journey-sample/illustration-01.svg';
+images['0_1'] = 'images/journey-sample/illustration-02.svg';
+images['0_2'] = 'images/journey-sample/illustration-03.svg';
+images['0_3'] = 'images/journey-sample/illustration-04.svg';
+images['0_4'] = 'images/journey-sample/illustration-05.svg';
+images['0_5'] = 'images/journey-sample/illustration-06.svg';
+images['0_6'] = 'images/journey-sample/illustration-07.svg';
+
+// ===== ペルソナカード描画 =====
+function renderPersonas() {
+  const g = document.getElementById('pgrid');
+  g.innerHTML = '';
+  PERSONAS.forEach((p, i) => {
+    const on = activePIdx === -1 || activePIdx === i;
+    const d = document.createElement('div');
+    d.className = 'pcard' + (on ? ' on' : '');
+    d.style.opacity = on ? 1 : 0.3;
+    d.style.borderTopColor = p.color;
+    d.onclick = () => filter(i);
+    let statsHtml = '';
+    for (const [k,v] of Object.entries(p.stats)) statsHtml += `<dt>${k}</dt><dd>${v}</dd>`;
+    d.innerHTML = `<div class="icon">${p.icon}</div><div class="nm">${p.name}</div>
+      <div>${p.tags.map(t=>'<span class="tg">'+t+'</span>').join('')}</div>
+      <div class="desc">${p.desc}</div><dl>${statsHtml}</dl>
+      <div class="qt">${p.quote}</div>`;
+    g.appendChild(d);
+  });
+}
+
+// ===== 横型ジャーニーテーブル描画 =====
+function renderJourney() {
+  const tbl = document.getElementById('jtable');
+  tbl.innerHTML = '';
+  // thead: フェーズ列
+  const thead = document.createElement('thead');
+  const htr = document.createElement('tr');
+  const corner = document.createElement('th');
+  corner.textContent = '';
+  htr.appendChild(corner);
+  PHASES.forEach(ph => {
+    const th = document.createElement('th');
+    th.style.background = ph.color;
+    th.style.color = '#1B2A4A';
+    th.innerHTML = `<div style="font-size:12px;font-weight:700">${ph.name}</div><div style="font-size:10px;font-weight:400;opacity:.7">${ph.sub}</div>`;
+    htr.appendChild(th);
+  });
+  thead.appendChild(htr);
+  tbl.appendChild(thead);
+
+  // tbody: ペルソナ行
+  const tbody = document.createElement('tbody');
+  PERSONAS.forEach((p, pi) => {
+    const show = activePIdx === -1 || activePIdx === pi;
+    // 各行タイプ
+    ROWS.forEach((row, ri) => {
+      const tr = document.createElement('tr');
+      // ペルソナラベル（rowspan）
+      if (ri === 0) {
+        const th = document.createElement('th');
+        th.rowSpan = ROWS.length;
+        th.style.borderLeft = `4px solid ${p.color}`;
+        const statsHtml2 = Object.entries(p.stats).map(([k,v])=>`<tr><td style="color:#999;white-space:nowrap;padding-right:4px;vertical-align:top;font-size:9px">${k}</td><td style="color:#444;font-size:9px;word-break:break-all;line-height:1.4">${v}</td></tr>`).join('');
+        th.innerHTML = `
+  <div style="font-size:20px;margin-bottom:4px">${p.icon}</div>
+  <div style="font-size:12px;font-weight:700;color:#1B2A4A;line-height:1.3;margin-bottom:6px;word-break:break-all">${p.name}</div>
+  <div style="margin-bottom:8px;line-height:1.8">${p.tags.map(t=>'<span class="tg">'+t+'</span>').join(' ')}</div>
+  <div style="font-size:10px;color:#555;line-height:1.6;margin-bottom:8px;word-break:break-all">${p.desc}</div>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:8px">${statsHtml2}</table>
+  <div style="font-size:10px;color:#888;font-style:italic;border-left:2px solid ${p.color};padding-left:6px;line-height:1.6;word-break:break-all">${p.quote}</div>
+`;
+        if (!show) th.style.opacity = '0.2';
+        tr.appendChild(th);
+      }
+      // フェーズセル
+      PHASES.forEach((ph, phi) => {
+        const td = document.createElement('td');
+        if (!show) td.className = 'dim';
+        if (row.isImage) {
+          // 画像プレースホルダー
+          const placeholder = document.createElement('div');
+          placeholder.className = 'img-placeholder';
+          placeholder.dataset.key = pi + '_' + phi;
+          const imgKey = pi + '_' + phi;
+          if (images[imgKey]) {
+            placeholder.innerHTML = `<img src="${images[imgKey]}">`;
+          } else {
+            placeholder.innerHTML = '<span class="drop-hint">📷 D&D</span>';
+          }
+          // D&D
+          placeholder.addEventListener('dragover', e => { e.preventDefault(); placeholder.style.borderColor = '#1B2A4A'; });
+          placeholder.addEventListener('dragleave', () => { placeholder.style.borderColor = '#ccc'; });
+          placeholder.addEventListener('drop', e => {
+            e.preventDefault();
+            placeholder.style.borderColor = '#ccc';
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+              const reader = new FileReader();
+              reader.onload = ev => {
+                images[imgKey] = ev.target.result;
+                placeholder.innerHTML = `<img src="${ev.target.result}">`;
+                saveImages();
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+          // click to remove
+          placeholder.addEventListener('dblclick', () => {
+            if (images[imgKey]) {
+              delete images[imgKey];
+              placeholder.innerHTML = '<span class="drop-hint">📷 D&D</span>';
+              saveImages();
+            }
+          });
+          td.appendChild(placeholder);
+        } else {
+          const data = JD[pi][phi];
+          const val = data[row.key] || '—';
+          const lbl = document.createElement('div');
+          lbl.style.cssText = 'font-size:9px;color:#aaa;margin-bottom:1px';
+          lbl.textContent = row.label;
+          td.appendChild(lbl);
+          const content = document.createElement('div');
+          content.style.cssText = 'font-size:11px;white-space:pre-line;line-height:1.45';
+          if (row.cls) content.className = row.cls;
+          if (row.key === 'touchpoint' && val.includes('⚠️')) content.style.color = '#c0392b';
+          if (row.key === 'touchpoint' && val.includes('✅')) content.style.color = '#27ae60';
+          content.textContent = val;
+          td.appendChild(content);
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    // separator row
+    if (pi < PERSONAS.length - 1) {
+      const sep = document.createElement('tr');
+      const sepTd = document.createElement('td');
+      sepTd.colSpan = PHASES.length + 1;
+      sepTd.style.cssText = 'height:4px;background:#f0f3f7;padding:0';
+      sep.appendChild(sepTd);
+      tbody.appendChild(sep);
+    }
+  });
+  tbl.appendChild(tbody);
+}
+
+// ===== プロンプト一覧描画 =====
+function renderPrompts() {
+  const list = document.getElementById('prompt-list');
+  list.innerHTML = '';
+  const filtered = activePIdx >= 0 ? PROMPTS.filter(p => p.pi === activePIdx) : PROMPTS;
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'prompt-card';
+    card.style.borderLeftColor = PERSONAS[p.pi].color;
+    card.innerHTML = `<div class="plabel">${PERSONAS[p.pi].icon} ${p.persona} — ${p.phase}</div>
+      <pre onclick="copyPrompt(this)">${p.prompt}</pre>`;
+    list.appendChild(card);
+  });
+}
+
+// ===== コピー =====
+function copyPrompt(el) {
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 1500);
+  });
+}
+
+// ===== フィルター =====
+function filter(idx) {
+  activePIdx = (activePIdx === idx) ? -1 : idx; // toggle
+  document.querySelectorAll('#tabs button').forEach((b, i) => {
+    b.classList.toggle('active', i === activePIdx + 1);
+  });
+  renderPersonas();
+  renderJourney();
+  renderPrompts();
+}
+
+// ===== localStorage画像保存 =====
+function saveImages() {
+  try { localStorage.setItem('ouchi_journey_images', JSON.stringify(images)); } catch(e) {}
+}
+function loadImages() {
+  try {
+    const saved = localStorage.getItem('ouchi_journey_images');
+    if (saved) Object.assign(images, JSON.parse(saved));
+  } catch(e) {}
+}
+
+// ===== 初期化 =====
+loadImages();
+renderPersonas();
+renderJourney();
+renderPrompts();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.DS_Store
+_unused/
+*.py
+.claude/
+.vscode/
+1763*.png
+images/character/sheet*_nobg.png

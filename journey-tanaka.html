@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カスタマージャーニーマップ — 田中夫妻</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+    background: #F2EDE3;
+    color: #18140C;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    padding: 48px 48px 32px;
+    border-bottom: 1px solid #d8d3c8;
+  }
+  .page-header .label {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .page-header h1 {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .page-header .meta {
+    font-size: 11px;
+    color: #666;
+  }
+
+  /* ── Persona card ── */
+  .persona-bar {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px 48px;
+    background: #fff;
+    border-bottom: 1px solid #d8d3c8;
+  }
+  .persona-icon { font-size: 32px; line-height: 1; }
+  .persona-info h2 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .persona-info .tags span {
+    display: inline-block;
+    background: #e8edf3;
+    border-radius: 2px;
+    padding: 2px 6px;
+    font-size: 9px;
+    margin-right: 4px;
+    color: #555;
+  }
+  .persona-info .desc {
+    font-size: 11px;
+    color: #555;
+    margin-top: 6px;
+    max-width: 600px;
+  }
+  .persona-info .quote {
+    font-size: 10px;
+    color: #888;
+    font-style: italic;
+    border-left: 2px solid #3498db;
+    padding-left: 8px;
+    margin-top: 8px;
+    max-width: 600px;
+  }
+  .persona-stats {
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2px 10px;
+    font-size: 10px;
+    min-width: 240px;
+  }
+  .persona-stats dt { color: #999; white-space: nowrap; }
+  .persona-stats dd { color: #444; }
+
+  /* ── Journey table ── */
+  .table-wrap {
+    overflow-x: auto;
+    padding: 32px 48px 48px;
+  }
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 1100px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  thead th {
+    background: #1B2A4A;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 12px 14px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    white-space: nowrap;
+  }
+  thead th:first-child { border-radius: 8px 0 0 0; width: 90px; }
+  thead th:last-child { border-radius: 0 8px 0 0; }
+  thead th .sub {
+    display: block;
+    font-size: 9px;
+    font-weight: 400;
+    opacity: .65;
+    margin-top: 2px;
+  }
+  tbody th {
+    background: #F2EDE3;
+    font-size: 10px;
+    font-weight: 600;
+    color: #555;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #f0ece4;
+    vertical-align: top;
+    color: #333;
+    line-height: 1.6;
+  }
+  tbody tr:last-child th,
+  tbody tr:last-child td { border-bottom: none; }
+  .emotion { font-size: 12px; color: #444; }
+  .img-cell { padding: 8px 14px; }
+  .img-cell img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
+
+  /* ── Footer ── */
+  .page-footer {
+    padding: 24px 48px;
+    border-top: 1px solid #d8d3c8;
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: .06em;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <p class="label">Customer Journey Map — Advisory Work Sample</p>
+  <h1>田中夫妻のジャーニー</h1>
+  <p class="meta">某住宅関連企業 新規サービス導入検討 ／ ペルソナ：保証満了間近・年金生活の高齢夫婦</p>
+</div>
+
+<div class="persona-bar">
+  <div class="persona-icon">👴</div>
+  <div class="persona-info">
+    <h2>田中 義男・幸子 夫妻</h2>
+    <div class="tags">
+      <span>保証満了間近</span><span>ライト候補</span><span>最優先セグメント</span>
+    </div>
+    <p class="desc">5年前に住宅施工を依頼。保証がもうすぐ切れるが、また高額な工事を勧められるのでは？と不安。年金生活で大きな出費は避けたい。</p>
+    <p class="quote">「保証が切れたらどうなるの？ また何十万もかかるの？ でも放っておくのも怖い…」</p>
+  </div>
+  <dl class="persona-stats">
+    <dt>年齢</dt><dd>65歳・63歳</dd>
+    <dt>住まい</dt><dd>木造2階建て・築25年</dd>
+    <dt>世帯</dt><dd>夫婦2人暮らし</dd>
+    <dt>施工歴</dt><dd>シロアリ防除（5年前）</dd>
+    <dt>ITリテラシー</dt><dd>スマホは使うがアプリは苦手</dd>
+  </dl>
+</div>
+
+<div class="table-wrap">
+<table id="jtable"></table>
+</div>
+
+<div class="page-footer">Advisory Work Sample — Customer Journey Map / 某住宅関連企業（匿名）</div>
+
+<script>
+const PHASES = [
+  { name:'① 潜在ニーズ', sub:'きっかけ前' },
+  { name:'② 認知・接触', sub:'サービスとの出会い' },
+  { name:'③ 検討・比較', sub:'入るかどうか' },
+  { name:'④ 加入決定', sub:'決め手' },
+  { name:'⑤ 初回体験', sub:'オンボーディング' },
+  { name:'⑥ 継続利用', sub:'6ヶ月後' },
+  { name:'⑦ 更新判断', sub:'1年後' },
+];
+
+const DATA = [
+  { scene:'保証満了まであと3ヶ月。「保証期間終了のお知らせ」ハガキが届く。床下の状態が気になるが放置中。', action:'ハガキを見て夫婦で「どうしよう」と話す。ネットで調べるのは苦手。近所の人に聞く。', emotion:'😟 不安（保証が切れたら何かあった時どうなる？）', touchpoint:'📮 保証満了通知ハガキ（DM）' },
+  { scene:'担当者から電話。「保証が切れる前に無料点検しませんか？」', action:'無料点検なら…と承諾。点検日を予約。', emotion:'😐 警戒（また工事を勧められるのでは）', touchpoint:'📞 アウトバウンド電話＋訪問予約' },
+  { scene:'点検員が床下を確認。「問題ありません。ただ築25年なので年1回は見た方がいい」。チラシを渡される。', action:'チラシを持ち帰り夫婦で相談。「月1,280円か…年1回見てもらえるなら安心かも」', emotion:'🤔 迷い（お金を払う価値があるか？）', touchpoint:'⚠️ 無料→有料の抵抗感 / 年金で固定費増やしたくない' },
+  { scene:'「保証が切れると通常料金。会員なら会員価格で対応できます」の一言が決め手。', action:'ライトプラン（月1,280円）に加入。', emotion:'😌 安堵（月1,280円なら試せる）', touchpoint:'✅ 相談先がある安心 / 会員価格 / 年1回プロ点検' },
+  { scene:'加入3ヶ月後の初回点検。床下写真付きレポートを手渡し。「経過観察で大丈夫です」と丁寧に説明。', action:'レポートを見て「写真でわかりやすい」と納得。', emotion:'😊 満足（お金を払った価値があった）', touchpoint:'✅ 写真レポートの安心感 / ⚠️ 形式的だと「無駄」と感じるリスク' },
+  { scene:'半年後に担当者から「お変わりありませんか？」の電話。', action:'特に自分からは何もしない。電話で近況を伝える。', emotion:'😊 安心（見守ってもらえている）', touchpoint:'📞 フォロー電話 / 追加メンテナンス提案' },
+  { scene:'1年経過。「この1年で相談できたか」「レポートに納得感があったか」で判断。', action:'継続。月額は気にならなくなる。', emotion:'😌 習慣化', touchpoint:'💰 LTV向上 / 追加商材の提案機会' },
+];
+
+const IMGS = [
+  'images/journey-tanaka/illustration-01.svg',
+  'images/journey-tanaka/illustration-02.svg',
+  'images/journey-tanaka/illustration-03.svg',
+  'images/journey-tanaka/illustration-04.svg',
+  'images/journey-tanaka/illustration-05.svg',
+  'images/journey-tanaka/illustration-06.svg',
+  'images/journey-tanaka/illustration-07.svg'
+];
+
+const ROWS = [
+  { key:'scene',      label:'シーン' },
+  { key:'action',     label:'行動' },
+  { key:'emotion',    label:'感情', cls:'emotion' },
+  { key:'touchpoint', label:'接点 / ペイン / ゲイン' },
+  { key:'image',      label:'イメージ', isImage: true },
+];
+
+const tbl = document.getElementById('jtable');
+
+// thead
+const thead = tbl.createTHead();
+const hr = thead.insertRow();
+const c0 = document.createElement('th'); c0.textContent = ''; hr.appendChild(c0);
+PHASES.forEach(ph => {
+  const th = document.createElement('th');
+  th.innerHTML = ph.name + '<span class="sub">' + ph.sub + '</span>';
+  hr.appendChild(th);
+});
+
+// tbody
+const tbody = tbl.createTBody();
+ROWS.forEach((row, ri) => {
+  const tr = tbody.insertRow();
+  const th = document.createElement('th');
+  th.textContent = row.label;
+  tr.appendChild(th);
+
+  PHASES.forEach((ph, phi) => {
+    const td = tr.insertCell();
+    if (row.isImage) {
+      td.className = 'img-cell';
+      if (IMGS[phi]) {
+        const img = document.createElement('img');
+        img.src = IMGS[phi];
+        td.appendChild(img);
+      }
+    } else {
+      td.className = row.cls || '';
+      td.textContent = DATA[phi][row.key] || '';
+    }
+  });
+});
+</script>
+</body>
+</html>
