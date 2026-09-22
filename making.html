@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/case.css">
+  <meta name="description" content="生成AIで試作のコストが下がった。それが本当かは、自分で作ってみないと分からない。仕事とは別に、思いついたものを作り続けている。">
+  <meta property="og:title" content="AIと、つくる速さ — Inouchi Ikuo">
+  <meta property="og:description" content="生成AIで試作のコストが下がった。それが本当かは、自分で作ってみないと分からない。仕事とは別に、思いついたものを作り続けている。">
+  <meta property="og:type" content="website">
+  <title>AIと、つくる速さ — Inouchi Ikuo</title>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Inouchi Ikuo</a>
+    <a class="nav-back" href="index.html">← Back to Portfolio</a>
+  </nav>
+
+  <main>
+
+  <div class="case-hero-section">
+  <div class="case-hero">
+    <p class="case-eyebrow">Selected Work — 02</p>
+    <h1 class="case-title">AIと、つくる速さ<br>手を動かして、確かめる</h1>
+    <p class="case-subtitle">生成AIで試作のコストが下がった、と言われる。それが本当かは、自分で作ってみないと分からない。デザインツールを開かず、コードを書く前提で、思いついたものを作り続けている。</p>
+    <dl class="case-meta">
+      <div class="case-meta-item">
+        <dt>Period</dt>
+        <dd>2025 – Now</dd>
+      </div>
+      <div class="case-meta-item">
+        <dt>Role</dt>
+        <dd>ひとりで企画・設計・実装</dd>
+      </div>
+      <div class="case-meta-item">
+        <dt>Domain</dt>
+        <dd>Vibe Coding / 3D / Web</dd>
+      </div>
+    </dl>
+  </div>
+  </div>
+
+  <div class="case-body">
+
+    <p class="section-label">Background</p>
+    <h2>作れるようになると、何が変わるのか。</h2>
+    <p>
+      デザイナーとして20年、絵は描けてもコードは書けなかった。作りたいものがあっても、誰かに頼むか、諦めるかだった。2025年、生成AIと一緒にコードを書くようになって、その前提が崩れた。思いついた夜に動くものができる。
+    </p>
+    <p>
+      ただ、「速く作れる」だけなら道具の話で終わる。知りたかったのは、作る速さが上がると<strong>考え方が変わるのか</strong>ということだった。それを確かめるために、仕事とは関係のないものを、思いついた順に作っている。
+    </p>
+
+    <hr class="divider">
+
+    <p class="section-label">Work 01 — 平安京</p>
+    <h2>史料が少ない街を、1町ずつ建てる。</h2>
+    <p>
+      ブラウザで動く3D CADを自作し、それで平安京を作った。『大内裏図』から区画を自動でトレースし、寝殿造の邸宅、東西の市、羅城門、朱雀大路を実寸で置いていく。時刻と月齢で光が変わり、ドローンの画角で街を飛べる。
+    </p>
+    <p>
+      難しかったのは形ではなく、<strong>正解が無い</strong>ことだった。平安京は史料が少ない。だから寸法ごとに「規格で決まっている／特定の記録から取った／複数の推定の代表値／こちらの推定」の4区分を残し、あとで直せるようにした。矛盾は機械検査で出す。「敷地が川を横切っている」「邸宅の家政部分が欠けている」のような検査を積み上げて、通るまで直す。
+    </p>
+
+    <div class="case-photo">
+      <img loading="lazy" src="images/making/heiankyo.png" alt="平安京 3D全景">
+      <div class="case-photo-caption">平安京全景 — ブラウザ3D。時刻・月齢で光が変わる。左は地点セレクタとマップ</div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-item">
+        <div class="insight-label">確かめ方</div>
+        <p class="insight-text">正解が無いものは、人に聞いても決まらない。推定の確度を4区分で残し、矛盾を検査で出して直す。</p>
+      </div>
+      <div class="insight-item">
+        <div class="insight-label">分かったこと</div>
+        <p class="insight-text">作れる速さが上がると、「まず置いてみて矛盾を見る」ができる。考えてから置く、の順が逆になった。</p>
+      </div>
+    </div>
+    <p><a class="artifact-link" href="https://ino0190.github.io/heiankyo/heiankyo/" target="_blank" rel="noopener">平安京を開く ↗</a></p>
+
+    <hr class="divider">
+
+    <p class="section-label">Work 02 — PetMessenger</p>
+    <h2>1997年の、あの気持ちをもう一度。</h2>
+    <p>
+      ポストペットに癒された記憶がある。メールを運ぶペットが部屋で勝手に動いていて、それを見ているだけで嬉しかった。あの気持ちの正体は何だったのか。Three.jsで3Dの部屋とペットを作り、Firebaseでメッセージを運ばせて、自分で確かめてみた。
+    </p>
+    <p>
+      作ってみて分かったのは、癒しの正体は機能ではなく<strong>「勝手に動いている」こと</strong>だった。おやつをやる、なでる、ボールを投げる——操作はどれも副次的で、放っておくと窓を見に行ったり、ラグで腹這いになったり、伸びをする。それを横目で見ている時間が、あの気持ちだった。
+    </p>
+
+    <div class="case-photo">
+      <img loading="lazy" src="images/making/petmessenger.png" alt="PetMessenger セットアップ画面">
+      <div class="case-photo-caption">はじめる画面 — 名前と色を決めると、3Dのペットが部屋に現れる。授業で学生と使う前提で作った</div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-item">
+        <div class="insight-label">確かめ方</div>
+        <p class="insight-text">自分が1997年のユーザーだったので、自分で1週間使った。何をしているときに嬉しいかをメモした。</p>
+      </div>
+      <div class="insight-item">
+        <div class="insight-label">分かったこと</div>
+        <p class="insight-text">「便利」ではなく「勝手に生きている」が価値。機能を足すほど、その感じは薄れた。</p>
+      </div>
+    </div>
+    <p><a class="artifact-link" href="https://ino0190.github.io/PetMessenger/" target="_blank" rel="noopener">PetMessengerを開く ↗</a></p>
+
+    <hr class="divider">
+
+    <p class="section-label">Work 03 — 羅占盤</p>
+    <h2>9つの占いを重ねると、矛盾が出る。</h2>
+    <p>
+      西洋占星術、四柱推命、紫微斗数、算命学、数秘術、九星気学、マヤ暦、宿曜、インド占星術。生年月日を入れると9つの占術を同時に計算し、結果を重ねる。狙いは当てることではなく、<strong>占術同士の矛盾</strong>を見せることだった。「リーダーなのに孤独。楽観的なのに慎重」——ひとつの占術では説明できない食い違いこそが、その人らしさとして残る。
+    </p>
+    <p>
+      作ってから最初に困ったのは、結果が長すぎて読まれないことだった。矛盾のまとめ、タグライン、性格、生き方、物語、処方箋、人格の6層、相性——全部が同じ強さで縦に積まれていた。情報を減らすのではなく、<strong>最初に何を見せるか</strong>を決めるだけで読まれ方が変わった。
+    </p>
+
+    <div class="case-photo">
+      <img loading="lazy" src="images/making/rasenban.png" alt="羅占盤 トップ画面">
+      <div class="case-photo-caption">羅占盤 — 9つの占術が交差する点にあなたがいる。左で生年月日、右で易経・タロット</div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-item">
+        <div class="insight-label">確かめ方</div>
+        <p class="insight-text">何人かの生年月日で結果を出し、「要するにあなたは」の1行が本人に当たるかを聞いた。当たらない組み合わせを直した。</p>
+      </div>
+      <div class="insight-item">
+        <div class="insight-label">分かったこと</div>
+        <p class="insight-text">密度は高くていい。ただし優先順位が無いと、密度はただの長さになる。</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <p class="section-label">Work 04 — Training Dashboard</p>
+    <h2>自分の体のデータで、試す。</h2>
+    <p>
+      パーソナルトレーニングの記録を可視化するダッシュボード。概要・体型分析・ベンチマーク比較・目標達成予測・食事分析の5タブで、CSVを入れると更新される。データがあると何が言えるのか、自分の体を使って確かめている。
+    </p>
+
+    <div class="artifact-frame">
+      <div class="artifact-header">
+        <span class="artifact-label">Training Dashboard — Pip-Boy Edition</span>
+        <a class="artifact-link" href="https://ino0190.github.io/gym-dashboard/" target="_blank" rel="noopener">別タブで開く ↗</a>
+      </div>
+      <div class="artifact-body">
+        <iframe src="https://ino0190.github.io/gym-dashboard/" title="Training Dashboard" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <p class="section-label">Work 05 — KITT</p>
+    <h2>デザインツールを、一切開かずに。</h2>
+    <p>
+      PhotoshopもIllustratorも開かず、UIデザインを一切せずにどこまで作れるか。1980年代のドラマ「ナイトライダー」の車載ダッシュボードをモチーフにしたWebラジオ。Web Audio APIの音声ビジュアライザー、CRT風のグロー。ここまで行けるなら、「コードを書く前提のデザイン」は現実になっている。
+    </p>
+
+    <div class="artifact-frame">
+      <div class="artifact-header">
+        <span class="artifact-label">KITT Dashboard Radio</span>
+        <a class="artifact-link" href="https://ino0190.github.io/KITT/" target="_blank" rel="noopener">別タブで開く ↗</a>
+      </div>
+      <div class="artifact-body">
+        <iframe src="https://ino0190.github.io/KITT/" title="KITT Dashboard Radio" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <p class="section-label">What This Showed</p>
+    <h2>速く作れると、確かめる回数が増える。</h2>
+    <p>
+      5つを作って分かったのは、速さそのものより、<strong>確かめる回数が増える</strong>ことだった。以前は「作る前に考え切る」しかなかった。いまは置いてみて、矛盾を見て、直す。平安京の検査も、PetMessengerで機能を足して薄れたのも、羅占盤の長さも、全部作ってから分かった。
+    </p>
+    <p>
+      試作は答えを出すためのものではなく、問いを見つけるためのものになった。授業で学生に「まず空想で書いて、確かめて置き換えていこう」と言えるのは、自分が毎週これをやっているからだ。
+    </p>
+
+    <div class="pullquote">
+      <p>「作れるようになったから、確かめる回数が増えた。答えが出るようになったわけではない。」</p>
+    </div>
+
+  </div>
+
+  </main>
+  <div class="back-section">
+    <a class="back-link" href="index.html">← Selected Work に戻る</a>
+    <span class="back-project">Next: iPod連携 車載UXデザイン開発 →</span>
+  </div>
+</body>
+</html>
