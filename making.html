@@ -140,10 +140,50 @@
 
     <hr class="divider">
 
+    <p class="section-label">Work 05 — BezierKit・CadKit・RAW現像</p>
+    <h2>描く道具から、立体、写真の道具まで続けて試す。</h2>
+    <p>
+      仕事では、プロトタイプを作りながら、どんな時にどんなニーズがあるかを確かめて、アイデアやデザインを考えていく。AIを使うと、この試しがかなり早く回る。ここでは、デザイナーが毎日使う道具を自分で作れるかを、続けて試した。
+    </p>
+    <p>
+      最初は、イラストレーターのようなものをAIで作れるのではないか、と考えてBezierKitを作った。操作の履歴を再生すると、図ができていく順番がそのまま見える。
+    </p>
+
+    <div class="case-photo">
+      <video class="loop-video" src="images/making/bezierkit.mp4" poster="images/making/bezierkit.jpg" width="1280" height="808" autoplay muted loop playsinline preload="metadata" aria-label="BezierKitで、三角形からコッホ曲線の雪の結晶を描いていく操作を再生している画面"></video>
+      <div class="case-photo-caption">BezierKit — 三角形からコッホ曲線の雪の結晶を描いた操作を、履歴から再生している</div>
+    </div>
+
+    <p>
+      BezierKitで線が描けたので、それを押し出せばCADになるのでは、と試してCadKitを作った。CadKitでブリキのロボをモデリングしたら、そのロボを動かせるのでは、と思って動かしてみた。このロボは、平安京の町を歩く「鉄の童」になっている。
+    </p>
+
+    <div class="case-photo">
+      <img loading="lazy" src="images/heiankyo/cadkit.jpg" width="1600" height="1000" alt="CadKitの編集画面。中央にブリキのロボ、左に操作の履歴、右に押し出しや回転体の設定">
+      <div class="case-photo-caption">CadKit でブリキのロボを組んでいるところ — 左に操作の履歴が並ぶ</div>
+    </div>
+
+    <div class="case-photo case-photo-fit">
+      <video class="loop-video" src="images/making/robot-walk.mp4" poster="images/making/robot-walk.jpg" width="520" height="532" autoplay muted loop playsinline preload="metadata" aria-label="CadKitで組んだブリキのロボが、その場で一回りして背中のねじを見せる"></video>
+      <div class="case-photo-caption">組んだロボを動かしたところ — 一回りして、背中のねじを見せる</div>
+    </div>
+
+    <p>
+      イラストレーターのようなものが作れるなら、画像の道具はどうか、とRAW現像ツールも試した。RICOH GR III のRAWを開いて、露出や色温度の補正、範囲や色で選んだ所だけの補正、スポット修復までできる。
+    </p>
+
+    <div class="case-photo">
+      <img loading="lazy" src="images/making/rawkit.jpg" width="1600" height="841" alt="RAW現像ツールの画面。中央に天空の鳥居の写真、左に撮影情報、右にヒストグラムと補正の設定">
+      <div class="case-photo-caption">RAW現像ツール — GR III で撮った天空の鳥居のRAWを開いたところ</div>
+    </div>
+    <p><a class="artifact-link" href="heiankyo.html">ロボが歩く平安京のページを見る →</a></p>
+
+    <hr class="divider">
+
     <p class="section-label">What This Showed</p>
     <h2>作る前に、要るか要らないかが分かる。</h2>
     <p>
-      4つを作って分かったのは、想像したアイデアをAIで一度可視化してしまうと、<strong>本格的に開発する前に、それが必要なのか不要なのかが見える</strong>ということだった。以前は作る前に考え切るしかなく、作ってから「違った」と分かることが多かった。PetMessengerで機能を足すほど嬉しさが薄れたことも、羅占盤の結果が長すぎたことも、全部一度形にしてから分かった。
+      ここまで作って分かったのは、想像したアイデアをAIで一度可視化してしまうと、<strong>本格的に開発する前に、それが必要なのか不要なのかが見える</strong>ということだった。以前は作る前に考え切るしかなく、作ってから「違った」と分かることが多かった。PetMessengerで機能を足すほど嬉しさが薄れたことも、羅占盤の結果が長すぎたことも、全部一度形にしてから分かった。
     </p>
     <p>
       試作は、作るかどうかを決めるための道具にもなった。授業で学生に「まず空想で書いて、確かめて置き換えていこう」と言えるのは、自分が毎週これをやっているからだ。
@@ -160,5 +200,12 @@
     <a class="back-link" href="index.html">← Selected Work に戻る</a>
     <a class="back-project" href="enterprise.html">Next: エンタープライズUX設計 →</a>
   </div>
+
+  <script>
+    // 端末で「動きを減らす」にしている人には、動画を止めて最初の絵で見せる
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('video.loop-video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+    }
+  </script>
 </body>
 </html>

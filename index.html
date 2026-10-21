@@ -51,18 +51,34 @@
       <textarea class="hero-memo" placeholder=""></textarea>
     </div>
 
-    <div class="postit-wrap" id="postit-1" style="top: 180px; right: 160px;">
+    <!-- 2026-10-21 写真3枚と付箋を1つの箱にまとめ、画面が狭いときは箱ごと縮めて本文に重ならないようにする -->
+    <div class="hero-collage">
+    <figure class="hero-photo">
+      <img src="images/jiko/23167550_1648683095188082_2369378475644591142_n.jpg" width="960" height="959" alt="3Dプリンタで作った試作品をのぞき込む子ども">
+      <figcaption>試作品を手渡して、使ってもらう</figcaption>
+    </figure>
+    <figure class="hero-photo hero-photo-sub hero-sub-robot">
+      <div class="robot-frame"><video src="images/making/robot-walk.mp4" poster="images/making/robot-walk.jpg" autoplay muted loop playsinline preload="metadata" aria-label="CadKitで組んだブリキのロボが歩く様子"></video></div>
+      <figcaption>CadKit で組んだロボを歩かせる</figcaption>
+    </figure>
+    <figure class="hero-photo hero-photo-sub hero-sub-prop">
+      <img src="images/hero-propeller.jpg" width="600" height="400" alt="3Dプリンタで作ったプロペラ付きの試作">
+      <figcaption>3Dプリンタで作った試作</figcaption>
+    </figure>
+
+    <div class="postit-wrap" id="postit-1" style="top: 190px; right: 40px;">
       <div class="postit">
         <strong>News</strong>
         26年度から多摩美術大学にて<br>UI/UXについての<br>非常勤講師を開始
       </div>
     </div>
 
-    <div class="postit-wrap" id="postit-2" style="top: 331px; right: 80px;">
+    <div class="postit-wrap" id="postit-2" style="top: 350px; right: 60px;">
       <div class="postit postit-2" style="font-variant-numeric: tabular-nums;">
         <strong>Today</strong>
         <div id="postit-date" style="margin-top:4px; font-size:.95em; letter-spacing:.03em;"></div>
       </div>
+    </div>
     </div>
 
     <button id="postit-toggle">Post-it ✕</button>
@@ -79,17 +95,29 @@
     <p class="work-statement-desc">3つは行き来しながら進めます。作ってみて新しい疑問が出てくれば、また探しに戻ります。</p>
     <ol class="approach-list">
       <li class="reveal">
+        <figure class="approach-media">
+          <img src="images/advisory/genba001.jpg" width="452" height="262" alt="生産ラインで作業する人たち">
+          <figcaption>工場のラインを見に行く</figcaption>
+        </figure>
         <span class="approach-num">Explore</span>
         <h3 class="approach-name">探す</h3>
         <p class="approach-desc">現場で人の動きを観察し、何を解くかを見つける。本人にとって普通のことは課題として語られないので、工場にも車の中にも教室にも、見に行く。</p>
         <a class="approach-link" href="truth.html">ユーザーは、本当のことを言えない <span>→</span></a>
       </li>
       <li class="reveal reveal-delay-1">
+        <figure class="approach-media">
+          <video src="images/making/airport-bhs.mp4" poster="images/making/airport-bhs.jpg" autoplay muted loop playsinline preload="metadata" aria-label="架空の空港で、預けた手荷物が検査と仕分けを通ってエプロンへ流れる様子"></video>
+          <figcaption>架空の空港の手荷物の流れを、CadKit で組んで動かす</figcaption>
+        </figure>
         <span class="approach-num">Experiment</span>
         <h3 class="approach-name">作って確かめる</h3>
         <p class="approach-desc">考えたことはプロトタイプにして、触って確かめる。一度形にすると、本格的に作る前に、それが要るか要らないかが見えてくる。</p>
       </li>
       <li class="reveal reveal-delay-2">
+        <figure class="approach-media">
+          <img src="images/next-move.jpg" width="1000" height="750" alt="白い初期の試作と、灰色の次の試作。頭に着けるカメラ付きの機器が2台並んでいる">
+          <figcaption>前の試作と次の試作を並べて、何を変えるか決める</figcaption>
+        </figure>
         <span class="approach-num">Next Move</span>
         <h3 class="approach-name">次の手を考える</h3>
         <p class="approach-desc">確かめて分かったことから、続けるか、変えるか、やめるかを一緒に決める。人や組織が引き継いで動けるように、制度や場をつくることもある。</p>
@@ -109,10 +137,11 @@
     <table class="projects-table">
       <tbody>
 
-        <tr class="tr-group"><td colspan="5"><span>何を解くかを見つける</span></td></tr>
+        <tr class="tr-group"><td colspan="6"><span>何を解くかを見つける</span></td></tr>
 
         <tr data-href="advisory.html" tabindex="0" role="link">
           <td class="td-num">01</td>
+          <td class="td-thumb"><img loading="lazy" src="images/advisory-thumb.jpg" width="600" height="400" alt=""></td>
           <td class="td-main">
             <span class="td-name">新規事業・DX検討を Advisory としてリード</span>
             <span class="td-desc">仕事が単発で終わる住宅メンテナンス会社で、「一度は家に入れてもらえている」という強みを見つけ、家の相談をいつでも受けるサブスクの検討へ進んだ。経営層と並走し、調査から事業提案まで関わる。</span>
@@ -127,6 +156,7 @@
 
         <tr data-href="poc.html" tabindex="0" role="link">
           <td class="td-num">02</td>
+          <td class="td-thumb"><img loading="lazy" src="images/poc-thumb.jpg" width="600" height="400" alt=""></td>
           <td class="td-main">
             <span class="td-name">生産現場の課題解決 PoC → 外販展開</span>
             <span class="td-desc">「課題は何ですか」と聞いても答えが出ない工場で、ラインにカメラを置いて待ち、不良の原因を映像で見つけた。このカメラの取り組みが、360度ライブ配信キット RDK の外販につながった。</span>
@@ -139,10 +169,11 @@
           <td class="td-arrow">↗</td>
         </tr>
 
-        <tr class="tr-group"><td colspan="5"><span>挑戦が生まれる場をつくる</span></td></tr>
+        <tr class="tr-group"><td colspan="6"><span>挑戦が生まれる場をつくる</span></td></tr>
 
         <tr data-href="tribus.html" tabindex="0" role="link">
           <td class="td-num">03</td>
+          <td class="td-thumb"><img loading="lazy" src="images/tribus-thumb.jpg" width="600" height="400" alt=""></td>
           <td class="td-main">
             <span class="td-name">社内起業制度で、挑戦する文化をトップダウンでつくる</span>
             <span class="td-desc">「社員の自発性が弱い」と言う経営層に「止めているのは現場の部課長です」と返して生まれた、社長直轄の制度。初年度120件超の応募、うち1件は数億円規模へ。反対していた部課長が、3年目には応援する側に変わった。</span>
@@ -157,6 +188,7 @@
 
         <tr data-href="tsukuroom.html" tabindex="0" role="link">
           <td class="td-num">04</td>
+          <td class="td-thumb"><img loading="lazy" src="images/tsukuroom-thumb.jpg" width="900" height="675" alt=""></td>
           <td class="td-main">
             <span class="td-name">企業内FABスペースで、挑戦する文化をボトムアップでつくる</span>
             <span class="td-desc">3Dプリンタとレーザーカッターを置いたら、仕事では見せない顔で没頭する社員が集まってきた。ここで新規事業の相談を受け続けた経験が、TRIBUSの土台になった。NHK 魔改造の夜への出場チームも率いた。</span>
@@ -169,10 +201,11 @@
           <td class="td-arrow">↗</td>
         </tr>
 
-        <tr class="tr-group"><td colspan="5"><span>自分で作って確かめる</span></td></tr>
+        <tr class="tr-group"><td colspan="6"><span>自分で作って確かめる</span></td></tr>
 
         <tr data-href="heiankyo.html" tabindex="0" role="link">
           <td class="td-num">05</td>
+          <td class="td-thumb"><img loading="lazy" src="images/heiankyo/nijo-robo.jpg" width="1500" height="857" alt=""></td>
           <td class="td-main">
             <span class="td-name">千年前の都を、調べて作って歩ける形にする</span>
             <span class="td-desc">平安京に行ってみたくて、昌泰三年（900）の都を史料と国土地理院の標高データから推定復元し、約3,000人の町の人が暮らすブラウザの箱庭にした。考証の調査ノート28件も公開している。授業での紹介や、漫画・イラストの背景にも使える。</span>
@@ -187,9 +220,10 @@
 
         <tr data-href="making.html" tabindex="0" role="link">
           <td class="td-num">06</td>
+          <td class="td-thumb"><img loading="lazy" src="images/making/robot-walk.jpg" alt=""></td>
           <td class="td-main">
             <span class="td-name">AIと、つくる速さ</span>
-            <span class="td-desc">生成AIで試作が速くなると、考え方は変わるのか。ペットが手紙を運ぶメッセンジャー、9つの占術を重ねる羅占盤、自分の体のデータを見るダッシュボード。仕事とは別に、思いついたものを作って確かめている。</span>
+            <span class="td-desc">生成AIで試作が速くなると、考え方は変わるのか。ペットが手紙を運ぶメッセンジャー、9つの占術を重ねる羅占盤、自分の体のデータを見るダッシュボード、描画ツールやCAD。仕事とは別に、思いついたものを作って確かめている。</span>
           </td>
           <td class="td-tags"><div class="td-tags-inner">
             <span>Vibe Coding</span>
@@ -199,10 +233,11 @@
           <td class="td-arrow">↗</td>
         </tr>
 
-        <tr class="tr-group"><td colspan="5"><span>土台にある設計の経験</span></td></tr>
+        <tr class="tr-group"><td colspan="6"><span>土台にある設計の経験</span></td></tr>
 
         <tr data-href="enterprise.html" tabindex="0" role="link">
           <td class="td-num">07</td>
+          <td class="td-thumb"><img loading="lazy" src="images/enterprise/Rsamary.jpg" alt=""></td>
           <td class="td-main">
             <span class="td-name">エンタープライズUX設計</span>
             <span class="td-desc">現場調査から要件定義・画面設計・マニュアル制作まで。4名のデザイナーをディレクションし、複数の業務プロダクトを設計・開発した。</span>
@@ -217,6 +252,7 @@
 
         <tr data-href="alpine.html" tabindex="0" role="link">
           <td class="td-num">08</td>
+          <td class="td-thumb"><img loading="lazy" src="images/alpine-ipod.jpg" width="900" height="506" alt=""></td>
           <td class="td-main">
             <span class="td-name">iPod連携 車載UXデザイン開発</span>
             <span class="td-desc">当時最先端の機能を車載機のUXに落とし込むデザイン開発をリード。グローバルパートナーとの協業でプロダクトを実現。</span>
@@ -326,7 +362,7 @@
     <p class="work-statement">何を作るか決まる前の相談に乗ってきた。</p>
     <table class="consult-table">
       <thead>
-        <tr><th>こんな相談</th><th>したこと</th><th>例</th></tr>
+        <tr><th>こんな相談</th><th>取り組み</th><th>実施例</th></tr>
       </thead>
       <tbody>
         <tr>
@@ -383,6 +419,12 @@
   <script src="js/reveal.js"></script>
   <script src="js/postit.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    // 端末で「動きを減らす」にしている人には、動画を止めて最初の絵で見せる
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.approach-media video, .hero-collage video').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+    }
+  </script>
 
 </body>
 </html>
