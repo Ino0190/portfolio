@@ -2,15 +2,34 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 img { display: block; max-width: 100%; }
 
+/* ── Windows 用：游ゴシックの標準を Medium に、太字を Bold に当てる（端末に入っている字を使うだけで、読み込みは無い） ── */
+@font-face { font-family: YuGothicMB; src: local("Yu Gothic Medium"), local("YuGothic-Medium"); font-weight: 100 500; }
+@font-face { font-family: YuGothicMB; src: local("Yu Gothic Bold"), local("YuGothic-Bold"); font-weight: 600 900; }
+
 /* ── Design Tokens ── */
 :root {
-  --bg:      #F2EDE3;
+  /* 2026-10-20 生成り #F2EDE3 から白へ（生成り＋錆色＋Georgia の組み合わせがAI生成サイトに見えたため） */
+  --bg:      #FFFFFF;
   --fg:      #18140C;
-  --muted:   #8A8378;
+  /* 2026-10-20 #8A8378 から濃くした（白地で約6.9:1） */
+  --muted:   #5F594F;
   --border:  rgba(24,20,12,.12);
   --accent:  #C94B1E;
-  --serif:   Georgia, "Times New Roman", serif;
-  --sans:    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* 英字は Georgia、日本語は明朝（Mac=ヒラギノ明朝、Windows=游明朝）に落とす */
+  --serif:   Georgia, "Times New Roman", "Hiragino Mincho ProN", "Yu Mincho", YuMincho, serif;
+  /* 日本語の見出し用。明朝を先に置き、見出しの中の英字も明朝の英字で出す（Georgia だと英字だけ大きく浮く） */
+  --serif-ja: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, serif;
+  /* Windows の游ゴシックは標準の太さだと細くかすれるので、Medium と Bold を組にした YuGothicMB を先に置く（下の @font-face） */
+  /* 2026-10-20 作品ごとの色（日本の伝統色・渋め）。どれも白地で文字にして約5:1以上 */
+  --tone-advisory:   #165E83; /* 藍色 */
+  --tone-poc:        #726D40; /* 海松色 */
+  --tone-tribus:     #316745; /* 千歳緑 */
+  --tone-tsukuroom:  #9F563A; /* 柿渋色 */
+  --tone-heiankyo:   #9E3D3F; /* 蘇芳 */
+  --tone-making:     #745399; /* 江戸紫 */
+  --tone-enterprise: #53727D; /* 錆納戸 */
+  --tone-alpine:     #19448E; /* 瑠璃紺 */
+  --sans:    -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", YuGothicMB, "Yu Gothic", Meiryo, sans-serif;
 }
 
 /* ── Base ── */

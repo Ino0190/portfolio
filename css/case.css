@@ -17,8 +17,9 @@
   font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 20px;
 }
+/* 日本語を含む見出しは正体（日本語の書体に斜体は無く、italic だと機械的に傾いた字になる） */
 .case-title {
-  font-family: var(--serif); font-style: italic;
+  font-family: var(--serif); font-style: normal;
   font-size: clamp(2.4rem, 5vw, 4.2rem);
   font-weight: normal; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 28px;
 }
@@ -40,7 +41,7 @@
   color: var(--accent); margin-bottom: 16px;
 }
 h2 {
-  font-family: var(--serif); font-style: italic;
+  font-family: var(--serif); font-style: normal;
   font-size: 1.8rem; font-weight: normal; line-height: 1.25; margin-bottom: 20px;
 }
 p { font-size: .95rem; line-height: 1.8; color: var(--fg); margin-bottom: 20px; }
@@ -50,7 +51,7 @@ p + p { margin-top: -4px; }
 /* ── Pullquote ── */
 .pullquote { border-left: 3px solid var(--accent); padding: 4px 0 4px 28px; margin: 48px 0; }
 .pullquote p {
-  font-family: var(--serif); font-style: italic;
+  font-family: var(--serif); font-style: normal;
   font-size: 1.25rem; line-height: 1.6; color: var(--fg); margin: 0;
 }
 
@@ -114,7 +115,7 @@ p + p { margin-top: -4px; }
 }
 .two-col-item { background: var(--bg); padding: 28px 24px; }
 .two-col-item h3 {
-  font-family: var(--serif); font-style: italic; font-size: 1.1rem;
+  font-family: var(--serif); font-style: normal; font-size: 1.1rem;
   font-weight: normal; margin-bottom: 12px;
 }
 .two-col-item p { font-size: .85rem; color: var(--muted); margin: 0; }
@@ -145,9 +146,9 @@ p + p { margin-top: -4px; }
   background: var(--border); border: 1px solid var(--border); margin: 40px 0;
 }
 .screen-item,
-.screen-wrap { background: var(--bg); overflow: hidden; }
+.screen-wrap { background: var(--bg); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
 .screen-item img,
-.screen-wrap img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.screen-wrap img { width: 100%; height: auto; display: block; }
 .screen-caption {
   padding: 10px 14px; font-size: .72rem; color: var(--muted);
   letter-spacing: .04em; border-top: 1px solid var(--border);
@@ -203,7 +204,7 @@ p + p { margin-top: -4px; }
   display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: center;
 }
 .product-block img { width: 100%; height: auto; }
-.product-name { font-family: var(--serif); font-style: italic; font-size: 1.3rem; margin-bottom: 12px; }
+.product-name { font-family: var(--serif); font-style: normal; font-size: 1.3rem; margin-bottom: 12px; }
 .product-desc { font-size: .88rem; line-height: 1.7; color: var(--muted); margin: 0; }
 
 /* ── Flow (advisory process diagram) ── */
@@ -246,14 +247,14 @@ p + p { margin-top: -4px; }
 
 /* ── Full-width figure ── */
 .case-figure { margin: 32px 0; }
-.case-figure img { width: 100%; border-radius: 4px; opacity: .93; }
+.case-figure img { width: 100%; border-radius: 4px; }
 .case-figure figcaption {
   margin-top: 10px; font-size: .78rem; color: var(--muted); letter-spacing: .04em;
 }
 
 /* ── Full-width hero image ── */
 .case-hero-img {
-  width: 100%; border-radius: 16px; opacity: .92; margin-bottom: 40px;
+  width: 100%; border-radius: 16px; margin-bottom: 40px;
 }
 
 /* ── Output sample box ── */
@@ -278,8 +279,17 @@ p + p { margin-top: -4px; }
 }
 
 .section-label-spaced { margin-top: 40px; }
+.case-photo-plain { border: none; }
+.case-photo-plain .case-photo-caption { border-top: none; padding-left: 0; }
 .case-photo-dark { background: #111; }
 .case-photo-dark img { max-width: 480px; margin: 0 auto; }
+/* 枠を画像の幅に合わせる（縦長の画像の左右に黒い帯を出さない・2026-10 KITT） */
+/* 🚫 fit-content だと説明文の長さで枠が広がり、画像の左右に黒い帯が残った。min-content だと画像ごと細く潰れた
+   → 枠の幅を画像の表示幅（420px）に固定し、画像は枠いっぱい・説明文は枠の中で折り返す */
+.case-photo-fit { width: 420px; max-width: 100%; margin-left: auto; margin-right: auto; }
+.case-photo-fit img { width: 100%; max-width: none; }
+/* 縦長の地図（832×962）。本文幅いっぱいだと画面の高さを超えるので幅を絞る */
+.case-photo-fit.case-photo-map { width: 560px; }
 .screen-wrap-flush { margin: 0; }
 
 /* ── Responsive ── */
@@ -297,3 +307,66 @@ p + p { margin-top: -4px; }
   .process-list li:has(.process-img) { grid-template-columns: 28px 1fr; }
   .process-img { width: 100%; height: auto; }
 }
+
+/* ── 2026-10-20 案A：差し色はリンクだけ。本文と説明は16px、キャプションは14px ──
+   戻すときはこのブロックを消す */
+.case-eyebrow, .section-label, .insight-label { color: var(--muted); }
+.pullquote { border-left-color: var(--fg); }
+.outcome-list li::before { background: var(--fg); }
+.stat-num { color: var(--fg); }
+.flow-step.highlight .flow-box { border-color: var(--fg); background: rgba(24,20,12,.04); }
+p { font-size: 1rem; }
+.process-list li, .flow-list li, .outcome-list li { font-size: 1rem; }
+.process-content strong, .flow-content strong { font-size: 1rem; }
+.process-content span, .flow-content span, .outcome-list li span,
+.two-col-item p, .insight-text, .product-desc, .output-sample-desc, .connected-desc { font-size: 1rem; }
+.case-photo-caption, .screen-caption, .case-figure figcaption, .process-step .desc { font-size: .875rem; }
+
+/* ── 2026-10-20 書体の決まり ──
+   日本語の見出しはすべてゴシック。ページの題と h2 は太字 700、それより下は 600。
+   Georgia は英字だけの番号などに残す */
+.case-title, h2 { font-family: var(--sans); font-weight: 700; letter-spacing: -.02em; }
+.pullquote p, .two-col-item h3, .product-name { font-family: var(--sans); font-weight: 600; }
+
+/* ── 2026-10-20 作品ごとの色（body の class で切り替え。値は tokens.css） ──
+   色を付けるのは小さな所だけ：ラベル・数字・箇条書きの点・引用の線・上部の下線。大きな見出しは墨のまま */
+.tone-advisory   { --tone: var(--tone-advisory); }
+.tone-poc        { --tone: var(--tone-poc); }
+.tone-tribus     { --tone: var(--tone-tribus); }
+.tone-tsukuroom  { --tone: var(--tone-tsukuroom); }
+.tone-heiankyo   { --tone: var(--tone-heiankyo); }
+.tone-making     { --tone: var(--tone-making); }
+.tone-enterprise { --tone: var(--tone-enterprise); }
+.tone-alpine     { --tone: var(--tone-alpine); }
+.case-eyebrow, .section-label, .insight-label { color: var(--tone, var(--muted)); }
+.stat-num { color: var(--tone, var(--fg)); }
+.outcome-list li::before { background: var(--tone, var(--fg)); }
+.pullquote { border-left-color: var(--tone, var(--fg)); }
+.case-hero-section { border-bottom: 3px solid var(--tone, var(--border)); }
+.flow-step.highlight .flow-box { border-color: var(--tone, var(--fg)); }
+.artifact-link, .connected-arrow { color: var(--tone, var(--accent)); }
+
+/* ── 2026-10-20 事例の上部に、作品の色の薄い影を上から落とす（井内さん案） ──
+   罫線の下に重ね、下へ向かって白に消える。色の面やカードにはしない */
+.case-hero-section {
+  background-image:
+    repeating-linear-gradient(to bottom, transparent, transparent 27px, rgba(24,20,12,.06) 27px, rgba(24,20,12,.06) 28px),
+    linear-gradient(to bottom, transparent var(--nav-h), color-mix(in srgb, var(--tone, transparent) 14%, transparent) var(--nav-h), transparent calc(var(--nav-h) + 20px));
+}
+/* 影はトップの上部の影（0 4px 16px・8%）と同じくらいの高さ約20px。固定メニューの下から始める */
+:root { --nav-h: 72px; }
+@media (max-width: 768px) { :root { --nav-h: 64px; } }
+
+/* ── 2026-10-20 小さい英字ラベルを14pxに。字間は .04em まで ── */
+.case-eyebrow, .section-label, .insight-label, .case-meta-item dt, .tag, .artifact-label,
+.artifact-link, .connected-num, .connected-arrow, .team-item dt, .flow-box span, .output-sample-label {
+  font-size: .875rem; letter-spacing: .04em;
+}
+
+/* ── 2026-10-21 色の役目をトップにそろえる：リンクは錆色、作品の色はラベル・数字・点・線・影だけ ── */
+.artifact-link, .connected-arrow { color: var(--accent); }
+.tag { color: var(--muted); border-color: var(--border); }
+
+/* ── 2026-10-21 ページ内の短い動画（音なし・繰り返し）。画像と同じ枠に入れる ── */
+.case-photo video { width: 100%; height: auto; display: block; background: #fff; }
+.case-photo-fit video { width: 100%; }
