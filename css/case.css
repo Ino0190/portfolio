@@ -370,3 +370,5 @@ p { font-size: 1rem; }
 /* ── 2026-10-21 ページ内の短い動画（音なし・繰り返し）。画像と同じ枠に入れる ── */
 .case-photo video { width: 100%; height: auto; display: block; background: #fff; }
 .case-photo-fit video { width: 100%; }
+/* ── 2026-10-22 トップから #work05 などへ飛んだとき、固定ナビの下に見出しが隠れないようにする ── */
+.section-label[id] { scroll-margin-top: calc(var(--nav-h, 72px) + 24px); }
